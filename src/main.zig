@@ -56,8 +56,8 @@ pub fn main() !void {
     _ = try std.Thread.spawn(.{}, sleepy, .{"One", 1, &mut, &wg});
     _ = try std.Thread.spawn(.{}, sleepy, .{"Two", 2, &mut, &wg});
 
-    // Wait a little for a thread to call .start() - sometimes we get to the workgroup
-    //   before any thread acquires it ...!!
+    // Wait a little for a thread to call .start() - sometimes we get to the waitgroup
+    //   here and see it empty... before any thread acquires it ...!!
     std.time.sleep(1 * std.time.ns_per_s);
     pool.waitAndWork(&wg);
 
