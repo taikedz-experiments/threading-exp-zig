@@ -1,3 +1,6 @@
+// With some help from
+// https://noelmrtn.fr/posts/zig_threading/
+
 const std = @import("std");
 const Thread = std.Thread;
 
@@ -35,7 +38,9 @@ pub fn main() !void {
     const alloc = tsafe_allocator.allocator();
 
     // To wait on threads we need a waitgroup, and a thread pool
-    //   to wrap the waitgroup
+    //   to wrap the waitgroup.
+    // Bonus observation: declaring the struct sets it up with its defaults
+    //   so delcaring "undefined" here actually works....????!!!!
     var wg:Thread.WaitGroup = undefined;
     wg.reset(); // mandatory on start
 
